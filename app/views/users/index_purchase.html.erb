@@ -1,0 +1,65 @@
+<div class="demo-content1">
+<table>
+<tr><td>
+<h4>Purchase Summary</h4></td>
+<td align="right">
+<div class="btn-group">
+<% if not factory? %>
+<div class="butt">
+<%= link_to "Add", users_add_purchase_path,:class=>"btn btn-success" %>
+</div>
+<%end%>
+</div>
+</td>
+</tr>
+</table>
+<br><br>
+<div class="fott">
+<div class="digg_pagination" align="right">
+    <%= will_paginate @purchase, :container => false %>
+  </div>
+</div>
+<!--%= will_paginate @purchase, renderer: BootstrapPagination::Rails %-->
+
+<table align="center">
+<tr>
+<h4 align="center">List Of Purchases</h4></tr>
+<tr>
+<td>
+<table border = "1">
+<tr><th>Qty Received</th>
+<th>GRN No</th></tr>
+<ul id = "Purchase" >
+<% @purchase.each do |i| %>
+<tr>
+<td><div class="fot"><%= i.qty_received%></div></td>
+<td><div class="fot"><%= i.grn_no%></div></td>
+<td><%= link_to "Show", {:action => 'show_purchase', :id => i.id },:class=>"btn btn-warning" %></td>
+
+<%if admin?%>
+<td><%= link_to "Edit", {:action => 'edit_purchase', :id => i.id },:class=>"btn btn-primary" %></td>
+<td><%= link_to "Delete", {:action => 'delete_purchase', :id => i.id },:class=>"btn btn-danger",:onclick=>"if (confirm('Are you sure!!!')) commentDelete(1); return false" %></td>
+<%end%>
+
+<% if operator?%>
+<%unless i.updated_at <(Time.now- 1.day)%>
+<td><%= link_to "Edit", {:action => 'edit_purchase', :id => i.id },:class=>"btn btn-primary" %></td>
+<td><%= link_to "Delete", {:action => 'delete_purchase', :id => i.id },:class=>"btn btn-danger",:onclick => 'alert("Are you Sure!")' %></td>
+<%end%>
+<%end%>
+</tr>
+<%end%>
+</ul>
+</table>
+</td>
+</tr>
+</table>
+<br><br><br>
+<div class="fott">
+<div class="digg_pagination">
+    <%= will_paginate @purchase, :container => false %>
+  </div>
+</div>
+<!--%= will_paginate @purchase, renderer: BootstrapPagination::Rails %-->
+
+</div>

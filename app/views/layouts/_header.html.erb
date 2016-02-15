@@ -1,0 +1,47 @@
+<% if not session[:user_id].blank?%>
+<header id="head">
+<table>
+<tr>
+<td align="left"><%=image_tag("/assets/logo3.png", height: '78', width: '90')%></td>
+<td align="center" class="info">
+<h6><marquee behavior="alternate" scrollamount="1">Quality, design and performance are the three pillars of our offerings</marquee></h6>
+</td>
+<td>
+<div class="dropdown">
+  <%= @user %>
+</div>
+</td>
+<td><%= link_to image_tag("/assets/logout1.png", height: '68', width: '50',:class=>"img-circle"),users_logout_path%>
+</td>
+</tr>
+</table>
+</header>
+
+
+<div class="demo-content">
+<br>
+<table bordercolor="#49AFCD" align="left">
+<ul>
+<li>  <%= link_to "Dashboard",users_dashboard_path %></li>
+ <li>Inventory </li>
+ <ul>
+    <li><%= link_to "Order Summary",users_index_orderSummary_path %></li>
+   <li> <%= link_to "Issues",users_index_issues_path %></li>
+    <!--%= link_to "ProductionReport" %-->
+   <li> <%= link_to "Labour",users_index_labour_path %></li>
+</ul>
+ <li>  <%= link_to "Purchase",users_index_purchase_path %></li>
+ <li>Report </li>
+<% if admin? %>
+  <!--%= link_to "Report",users_report_path %-->
+  <li> <%= link_to "Admin",users_index_admin_path %></li>
+  <!--%= link_to "New User",new_user_path %-->
+</ul>
+<%end%>
+</table>
+</div>
+</div>
+<div id="footer">
+<p><h4 align="center">Copyright WhitePlaast @ 2016<h4></p>
+</div>
+<%end%>

@@ -1,0 +1,33 @@
+<div class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+       <h4 class="modal-title">
+        <table align="left"><tr><th><%=image_tag("/assets/logo3.png")%></th><th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th><table><th class="info"><h1 align="center">WHITE PLAAST</h1></th></tr></table></table>
+       </header>
+      </h4>
+      </div> 
+<div class="gap">
+<table>
+  <%= form_for([@user], :url=>{:controller=>"users", :action => "validate_login"}, :method => "put") do |i| %>
+   <tr>
+    <td><%= i.text_field :name,:placeholder=>"Username",:autofocus=>true%></td>
+   </tr>
+   <tr>
+    <td><%= i.password_field :password,:placeholder=>"password"%></td>
+   </tr>
+   <tr>
+    <td align="center"><%= i.submit "Login",:class=>"btn btn-info" %></td>
+       </tr>
+      <% end %>
+<tr><td></td></tr>
+<tr><td></td></tr>
+<tr><td></td></tr>
+<tr>
+<td align="center"><!--%= link_to "New Registration Page",new_user_path %--></td>
+</tr>    
+</table>
+</div>
+</div>
+</div>
+</div>

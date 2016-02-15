@@ -1,0 +1,11 @@
+<h4 align="right"><%= link_to "List",users_index_admin_path(@admin),:class=>"btn btn-warning"%></h4>
+<center><b>Add New Work Nature</b>
+<table style="box-shadow:3px 3px 5px #000000;">
+<tr><td> <%= form_for([@nature_of_work], validate: true, :url=>{:controller=>"users", :action => "nature_create"}) do |i|%>
+<tr><td><%=i.text_field:nature_of_work_list%></tr>
+<td align="center"><%= i.submit "Save",:class=>"btn btn-info"%>
+ <%end%>
+</td>
+</tr>
+</table>
+

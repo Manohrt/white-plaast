@@ -1,0 +1,79 @@
+<div class="demo-content1">
+<table>
+<tr><td>
+<h4>Labour - View</h4></td>
+<td align="right">
+<div class="btn-group">
+<% if not factory? %>
+<%= link_to "Add", users_add_labour_path,:class=>"btn btn-success" %>
+<%end%>
+<%= link_to "LIST", users_index_labour_path,:class=>"btn btn-info" %>
+</div>
+</td>
+</tr>
+</table>
+
+<br><br>
+<table border="1" align="center" style="border:1px solid white;box-shadow:1px 3px 7px #000000;">
+<tr><td>Order No:</td>
+<td><%= @labour.order_no %></tr>
+<tr><td>Nature:</td>
+<td><%= @labour.nature %></tr>
+<tr><td>Difference:</td>
+<td><%= @labour.difference %></tr>
+<tr><td>Dated:</td>
+<td><%= @labour.dated %></tr>
+<tr><td>Rate Per Person:</td>
+<td><%= @labour.rate_per_person %></tr>
+<tr><td>Efficiency in %:</td>
+<td><%= @labour.efficiency %></tr>
+<tr><td>Party:</td>
+<td><%= @labour.party %></tr>
+<tr><td>Cost Per Shift:</td>
+<td><%= @labour.cost_per_shift %></tr>
+<tr><td>No of Hrs IDLE Time:</td>
+<td><%= @labour.no_of_hrs_idle %></tr>
+<tr><td>Issue Slip No:</td>
+<td><%= @labour.issue_slip_no %></tr>
+<tr><td>Finished Goods Name:</td>
+<td><%= @labour.goods_finished %></tr>
+<tr><td>No of Minutes IDLE Time:</td>
+<td><%= @labour.no_of_mins_idle %></tr>
+<tr><td>Date:</td>
+<td><%= @labour.date %></tr>
+<tr><td>No of Item Produced:</td>
+<td><%= @labour.no_of_item_produced %></tr>
+<tr><td>Reasons for IDLE Time:</td>
+<td><%= @labour.reasons_for_idle %></tr>
+<tr><td>Machine Used:</td>
+<td><%= @labour.mach_used %></tr>
+<tr><td>Weight in Gms Cavity:</td>
+<td><%= @labour.weight_in_gms %></tr>
+<tr><td>IDLE TIME Reasons Description:</td>
+<td><%= @labour.idle_time_reasons_desc %></tr>
+<tr><td>Mould Number:</td>
+<td><%= @labour.mould %></tr>
+<tr><td>No of Cavity:</td>
+<td><%= @labour.no_of_cavity %></tr>
+<tr><td>Spares(Name):</td>
+<td><%= @labour.spares_name %></tr>
+<tr><td>Shift:</td>
+<td><%= @labour.shift %></tr>
+<tr><td>Cycle Time:</td>
+<td><%= @labour.cycle_time %></tr>
+<tr><td>Spares(Cost):</td>
+<td><%= @labour.spares_cost %></tr>
+<tr><td>No of Persons:</td>
+<td><%= @labour.no_of_persons %></tr>
+<tr><td>Working Hours:</td>
+<td><%= @labour.working_hrs %></tr>
+<tr><td>Supervisor Name:</td>
+<td><%= @labour.supervisor_name %></tr>
+<tr><td>Other Work:</td>
+<td><%= @labour.other_work %></tr>
+<tr><td>Expected Production:</td>
+<td><%= @labour.expected_production %></tr>
+
+
+</table>
+</div>

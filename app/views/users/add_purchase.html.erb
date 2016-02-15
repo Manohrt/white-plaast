@@ -1,0 +1,90 @@
+<script>
+    function div() {
+      var txtFirstNumberValue = document.getElementById('txt1').value;
+      var txtSecondNumberValue = document.getElementById('txt2').value;
+      var txtThreeNumberValue = document.getElementById('txt3').value;
+       var txtFiveNumberValue = document.getElementById('txt5').value;
+      var txtFourNumberValue = document.getElementById('txt4').value;
+      var result = parseFloat(txtFirstNumberValue) /  parseFloat(txtSecondNumberValue);
+       var result1 = parseFloat(txtThreeNumberValue) -  parseFloat(txtSecondNumberValue);
+        var result2 = parseFloat(txtFiveNumberValue) *  parseFloat(txtFourNumberValue);
+          if (!isNaN(result))  {
+         document.getElementById('txt4').value = result;
+     }
+          if (!isNaN(result1))  {
+         document.getElementById('txt5').value = result1;
+     }
+          if (!isNaN(result2))  {
+         document.getElementById('txt6').value = result2;
+     }
+
+
+}
+</script>
+<div class="demo-content1">
+<table>
+<tr><td>
+<h4>Purchase Summary </h4></td>
+<td align="right">
+<div class="btn-group">
+<%= link_to "LIST", users_index_purchase_path,:class=>"btn btn-info" %>
+</div>
+</td>
+</tr>
+</table>
+
+<br><br><br>
+<table style="border:1px solid white;box-shadow:1px 3px 7px  #000000;">
+<%= form_for([@purchase], :url=>{:controller=>"users", :action => "get_purchase"}) do |i|%>
+<%= @purchase.errors.full_messages.first if @purchase.errors.any? %>
+<tr>
+<td>
+<table>
+<tr><td><%= i.label :party%></td></tr>
+<tr>
+<td><%= i.collection_select(:party, PartyPurchase.select(:party_purchase_list).uniq, :party_purchase_list, :party_purchase_list, :prompt=> '--select--', :class =>"party", :id=>"party")%> </td></tr>
+<tr><td><%= i.label :desc,"Description"%></td></tr>
+<tr><td><%= i.text_field :desc,:required => true%></td></tr>
+<tr><td><%= i.label :grn_no,"GRN No"%></td></tr>
+<tr><td><%= i.number_field :grn_no,:required => true%></td></tr>
+<tr><td><%= i.label :rejected%></td></tr>
+<tr><td><%= i.text_field :rejected,:step => "any",:id=>"txt5",:readonly=> "true"%></td></tr>
+<tr><td><%= i.label :debit%></td></tr>
+<tr><td><%= i.number_field :debit,:step => "any",:id=>"txt6",:readonly=> "true"%></td></tr>
+</table>
+</td>
+
+<td>
+<div class="pad">
+<table>
+<tr><td><%= i.label :trading_material,"Trading Material"%></td></tr>
+<tr><td><%= i.text_field :trading_material,:required => true%></td></tr>
+<tr><td><%= i.label :qty_received%></td></tr>
+<tr><td><%= i.number_field :qty_received,:step => "any",:id=>"txt2",:onkeyup=>"div()",:required => true%></td></tr>
+<tr><td><%= i.label :bill_value%></td></tr>
+<tr><td><%= i.number_field :bill_value,:step => "any",:id=>"txt1",:onkeyup=>"div()",:required => true%></td></tr>
+<tr><td><%= i.label :reasons%></td></tr>
+<tr><td><%= i.text_field :reasons,:required => true%></td></tr>
+</table>
+</div>
+</td>
+
+<td>
+<table>
+<tr><td><%= i.label :date%></td></tr>
+<tr><td><%= i.text_field :date,:id=>"txtDate",:required => true%></td></tr>
+<tr><td><%= i.label :item%></td></tr>
+<tr><td><%= i.text_field :item,:required => true%></td></tr>
+<tr><td><%= i.label :qty_accepted%></td></tr>
+<tr><td><%= i.number_field :qty_accepted,:id=>"txt3",:onkeyup=>"div()",:required => true%></td></tr>
+<tr><td><%= i.label :rate%></td></tr>
+<tr><td><%= i.number_field :rate,:step => "any",:id=>"txt4",:readonly=> "true"%></td></tr>
+</table>
+</td>
+</tr>
+<tr>
+<td></td><td align="center"><%= i.submit "Submit",:class=>"btn btn-info" %></td>
+</tr>
+<%end%>
+</table>
+</div>

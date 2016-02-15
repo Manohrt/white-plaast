@@ -1,0 +1,27 @@
+<h3><center> Registration Page </center></h3>
+<br><br><br>
+<table align="center" style="border:1px solid white;box-shadow:3px 3px 5px #000000;" >
+<%= form_for User.new do | i | %>
+<tr>
+<td><%= i.label :name%></td>
+<td><%= i.text_field :name,:require=>"true"%></td>
+</tr>
+<tr>
+<td><%= i.label :password%></td>
+<td><%= i.password_field :password,:require=>"true"%></td>
+</tr>
+<tr>
+<td><%= i.label :password_confirmation,"Password Confirmation"%></td>
+<td><%= i.password_field :password_confirmation, :value => params[:password],:require=>"true"%></td>
+</tr>
+<tr>
+<td><%= i.label :role,"Role"%></td>
+<td><%= i.select :role, options_for_select([["Admin"],["Operator"],["Factory"]]),:prompt=> '--select--'%></td
+</tr>
+
+<tr>
+<td></td><td align="center"><%= i.submit "Register",:class=>"btn btn-info"%></td>
+</tr>
+<%end%>
+</table>
+

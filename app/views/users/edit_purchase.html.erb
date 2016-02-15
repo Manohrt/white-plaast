@@ -1,0 +1,67 @@
+<div class="demo-content1">
+<table>
+<tr><td>
+<h4>Purchase Summary - Update</h4></td>
+<td align="right">
+<div class="btn-group">
+<% if not factory? %>
+<%= link_to "Add", users_add_purchase_path,:class=>"btn btn-success" %>
+<%end%>
+<%= link_to "LIST", users_index_purchase_path,:class=>"btn btn-info" %>
+</div>
+</td>
+</tr>
+</table>
+
+<br><br>
+<table style="border:1px solid white;box-shadow:1px 3px 7px #000000;">
+<%= form_for @purchase, :url=>{:action => "update_purchase", :id => @purchase } do |i| %>
+<tr>
+<td>
+<table>
+<tr><td><%= i.label :party%></td></tr>
+<tr>
+<td><%= i.collection_select(:party, PartyPurchase.select(:party_purchase_list).uniq, :party_purchase_list, :party_purchase_list, :prompt=> '--select--', :class =>"party", :id=>"party")%> </td></tr>
+<tr><td><%= i.label :desc,"Description"%></td></tr>
+<tr><td><%= i.text_field :desc,:required => true%></td></tr>
+<tr><td><%= i.label :grn_no,"GRN No"%></td></tr>
+<tr><td><%= i.number_field :grn_no,:required => true,:readonly=>true%></td></tr>
+<tr><td><%= i.label :rejected%></td></tr>
+<tr><td><%= i.text_field :rejected,:step => "any",:readonly=>"true"%></td></tr>
+<tr><td><%= i.label :debit%></td></tr>
+<tr><td><%= i.number_field :debit,:step => "any",:readonly=>"true"%></td></tr>
+</table>
+</td>
+
+<td>
+<div class="pad">
+<table>
+<tr><td><%= i.label :trading_material,"Trading Material"%></td></tr>
+<tr><td><%= i.text_field :trading_material,:required => true%></td></tr>
+<tr><td><%= i.label :qty_received,"Qty Received"%></td></tr>
+<tr><td><%= i.number_field :qty_received,:required => true%></td></tr>
+<tr><td><%= i.label :bill_value%></td></tr>
+<tr><td><%= i.number_field :bill_value,:required => true%></td></tr>
+<tr><td><%= i.label :reasons%></td></tr>
+<tr><td><%= i.text_field :reasons,:required => true%></td></tr>
+</table>
+</div>
+</td>
+
+<td>
+<table>
+<tr><td><%= i.label :date%></td></tr>
+<tr><td><%= i.text_field :date,:id=>"txtDate",:required => true%></td></tr>
+<tr><td><%= i.label :item%></td></tr>
+<tr><td><%= i.text_field :item,:required => true%></td></tr>
+<tr><td><%= i.label :qty_accepted%></td></tr>
+<tr><td><%= i.number_field :qty_accepted,:required => true%></td></tr>
+<tr><td><%= i.label :rate%></td></tr>
+<tr><td><%= i.number_field :rate,:step => "any",:step => "any",:readonly=>"true"%></td></tr>
+</table>
+</td>
+</tr>
+<tr><td></td><td align="center"><%= i.submit "UPDATE",:class=>"btn btn-info" %></td></tr>
+<% end %>
+</table>
+</div>

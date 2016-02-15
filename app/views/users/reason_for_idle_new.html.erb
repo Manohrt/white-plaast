@@ -1,0 +1,11 @@
+<h4 align="right"><%= link_to "List",users_index_admin_path(@admin),:class=>"btn btn-warning"%></h4>
+<center><b>Add New Reason for Idle Time</b>
+<table>
+<tr><td> <%= form_for([@reason_for_idle_time], validate: true, :url=>{:controller=>"users", :action => "reasonforidle_create"}) do |i|%>
+<tr><td><%=i.text_field:reason_for_idle_time_list%></tr>
+<td align="center"><%= i.submit"Save",:class="btn btn-info"%>
+ <%end%>
+</td>
+</tr>
+</table>
+

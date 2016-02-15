@@ -1,0 +1,12 @@
+<h4 align="right"><%= link_to "List",users_index_admin_path(@admin),:class=>"btn btn-info"%></h4>
+<center><b>Add New Purchase Party</b>
+<table  style="box-shadow:3px 3px 5px #000000;">
+<tr><td> <%= form_for([@party_purchase], validate: true, :url=>{:controller=>"users", :action => "party_purchse_create"}) do |i|%>
+<tr><td><%=i.text_field:party_purchase_list%></tr>
+<td><%= i.submit "Save",:class=>"btn btn-info"%>
+ <%end%>
+</td>
+</tr>
+</table>
+
+

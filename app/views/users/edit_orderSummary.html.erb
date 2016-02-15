@@ -1,0 +1,72 @@
+<div class="demo-content1">
+<table>
+<tr>
+<td align="center"><h4>Order Summary - Update</h4></td>
+<td>
+<div class="btn-group">
+<% if not factory? %>
+<%= link_to "Add", users_add_orderSummary_path,:class=>"btn btn-success" %>
+<%end%>
+<%= link_to "list" , users_index_orderSummary_path,:class=>"btn btn-info" %></div></td>
+</tr>
+</table>
+<br><br><br>
+<table>
+<%= form_for @order_summary, :url=>{:action=>"update_orderSummary", :id => @order_summary } do |i|%>
+<tr>
+<td>
+<table style="border:1px solid white;box-shadow:3px 3px 5px #000000;">
+<tr><td><%= i.label :order_no,"Order No" %></td></tr>
+<tr><td><%= i.number_field :order_no, :required => true,:readonly=>true%></td></tr>
+<tr><td><%= i.label :order_date,"Order Date" %></td></tr>
+<tr><td><%= i.text_field :order_date,:id=>"txtDate",:required => true %></div></td></tr>
+<tr><td><%= i.label :scheduled_date,"Scheduled Date of Delivery" %></td></tr>
+<tr><td><%= i.text_field :scheduled_date,:id=>"txtDate1",:required => true %></div></td></tr>
+<tr><td><%= i.label :party,"Party" %></td></tr>
+<tr><td>
+<%= i.collection_select(:party, PartyOrder.select(:party_order_list).uniq, :party_order_list, :party_order_list, :prompt=> '--select--', :class =>"party", :id=>"party")%> </td></tr>
+<tr><td><%= i.label :goods_finished,"Finished Goods Name" %></td></tr>
+<tr><td>
+<%= i.collection_select(:goods_finished, FinishedGoodsName.select(:finished_goods_name_list).uniq, :finished_goods_name_list, :finished_goods_name_list, :prompt=> '--select--')%>
+</td></tr>
+<tr><td><%= i.label :nos,"Nos"%></td></tr>
+<tr><td ><%= i.number_field :nos, :required => true,:step => "any",:id=>"txt1",:onkeyup=>"sum()" %></td></tr>
+</table>
+</td>
+
+<td>
+<div class="pad">
+<table style="border:1px solid white;box-shadow:3px 3px 5px #000000;">
+<h4>Quantity Requirement Plan</h4>
+<tr><td><%= i.label :ra_material,"Raw Material (RM)" %></td></tr>
+<tr><td>
+<%= i.collection_select(:ra_material, RawMaterial.select(:raw_material_list).uniq, :raw_material_list, :raw_material_list,:prompt=>"--select--")%></td></tr>
+<tr><td><%= i.label :rm_qty_per_item,"Raw Material Qty per Item" %></td></tr>
+<tr><td ><%= i.number_field :rm_qty_per_item, :required => true,:step => "any",:id=>"txt2",:onkeyup=>"sum()" %></td></tr>
+<tr><td><%= i.label :chemicals,"Chemical (Che)" %></td></tr>
+<tr><td><%= i.text_field :chemicals,:readonly => true %>
+</td></tr>
+</table>
+</div>
+</td>
+
+<td>
+<table style="border:1px solid white;box-shadow:3px 3px 5px #000000;">
+<tr><td><%= i.label :color_std,"Colour Standard" %></td></tr>
+<tr><td><%= i.text_field :color_std, :required => true %></td></tr>
+<tr><td><%= i.label :chemical_qty,"Chemical Qty"%></td></tr>
+<tr><td><%= i.number_field :chemical_qty, :required => true,:step => "any",:id=>"txt3",:onkeyup=>"sum()" %></td></tr>
+<tr><td><%= i.label :total_kgs,"Total Kgs" %></td></tr>
+<tr><td ><%= i.number_field :total_kgs,:step => "any",:id=>"txt4",:readonly=> "true" %></td></tr>
+<tr><td><%= i.label :total_rm_kgs,"Total Raw Material Kgs" %></td></tr>
+<tr><td><%= i.number_field :total_rm_kgs,:id=>"txt5",:step => "any",:readonly=> "true" %></td></tr>
+</table>
+</td>
+</tr>
+ <tr><td></td><td align="center">
+<%= i.submit "Submit",:class=>"btn btn-info"%></td></tr>
+</table>
+<%end%>
+</table>
+</div>
+

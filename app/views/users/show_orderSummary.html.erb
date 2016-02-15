@@ -1,0 +1,61 @@
+<div class="demo-content1">
+<table>
+<tr><td>
+<h4>Order Summary - View</h4></td>
+<td align="right">
+<div class="btn-group">
+<% if not factory? %>
+<%= link_to "Add", users_add_orderSummary_path,:class=>"btn btn-success" %>
+<%end%>
+<%= link_to "LIST", users_index_orderSummary_path,:class=>"btn btn-info" %>
+</div>
+</td>
+</tr>
+</table>
+
+<br><br><br>
+<table border="1px" align="center" style="box-shadow:3px 3px 5px #000000;" >
+<tr>
+<td>Order No:</td>
+<td><%= @order_summary.order_no %></td></tr>
+<tr>
+<td> Order Date:</td>
+<td><%= @order_summary.order_date %></td></tr>
+<tr>
+<td>Scheduled Date of Delivery:</td>
+<td><%= @order_summary.scheduled_date %></td></tr>
+<tr>
+<td>Party:</td>
+<td><%= @order_summary.party %></td></tr>
+<tr>
+<td>Finished Goods Name:</td>
+<td><%= @order_summary.goods_finished %></td></tr>
+<tr>
+<td>Nos:</td>
+<td><%= @order_summary.nos %></td></tr>
+<br>
+<th>Quantity Requirement Plan</th>
+<tr>
+<td>Raw Material (RM):</td>
+<td><%= @order_summary.ra_material %></td></tr>
+<tr>
+<td>Raw Material Qty per Item:</td>
+<td><%= @order_summary.rm_qty_per_item %></td></tr>
+<tr>
+<td>Chemical (Che):</td>
+<td><%= @order_summary.chemicals %></td></tr>
+<tr>
+<td>Colour Standard:</td>
+<td><%= @order_summary.color_std %></td></tr>
+<tr>
+<td>Chemical Qty:</td>
+<td><%= @order_summary.chemical_qty %></td></tr>
+<tr>
+<td>Total Kgs:</td>
+<td><%= @order_summary.total_kgs %></td></tr>
+<tr>
+<td>Total Raw Material Kgs:</td>
+<td><%= @order_summary.total_rm_kgs %></td></tr>
+<tr>
+</table>
+</div>

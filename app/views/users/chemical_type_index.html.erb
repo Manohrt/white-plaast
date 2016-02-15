@@ -1,0 +1,18 @@
+<table align="right">
+<tr><td>
+<%= link_to "Add New",users_party_order_new_path(@party_order),:class=>"btn btn-success"%></td>
+<td><%= link_to "List",users_index_admin_path(@admin),:class=>"btn btn-warning"%></td></tr>
+</table>
+<br><br>
+<div class="demo-content1">
+<center><b>Chemical Lists</b></center>
+<% @chemical_type.each do |i| %>
+<table border="1"  style="box-shadow:3px 3px 5px #000000;">
+<tr>
+<td><div class="fot"><%= i.chemical_type_list%></div></td>
+<td><%= link_to "Delete", {:action => 'chemical_type_delete', :id => i.id },:class=>"btn btn-danger",:onclick=>"if (confirm('Are you sure...?')) commentDelete(1); return false"%></td>
+</tr>
+</table>
+<%end%>
+</div>
+

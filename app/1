@@ -1,0 +1,221 @@
+class UsersController < ApplicationController
+skip_before_action :check_session, :only=>[:new,:create,:login,:validate_login,:purchase,:get_purchase,:report,:get_report,:issues,:get_issues,:labour,:get_labour]
+  def index
+    @order=Order.all
+  end
+
+  def new
+    @user=User.new
+  end
+
+  def create
+    @user=User.new(user_params)
+    if @user.save
+       redirect_to :action=> "login"
+    else
+       render "new"
+    end
+  end
+
+  def login
+    @user=User.new
+  end
+
+  def validate_login
+    params.permit!
+    @user=User.where params[:user]
+      if not @user.blank?
+        session[:user_id]=@user.first.id
+        redirect_to :action=>"add_orderSummary"
+      else
+        redirect_to root_path
+      end
+  end
+  
+   def logout
+     session[:user_id]=nil
+     redirect_to root_path
+   end
+
+
+  def add_orderSummary
+    @order=Order.new
+  end
+
+  def get_order
+    @order=Order.new(order_params)
+    if @order.save
+     flash[:notice] = "Order Saved"
+      redirect_to :action => "add_orderSummary"
+      else
+      flash.now[:notice] = "Order not Saved"
+      render "add_orderSummary"
+    end
+  end
+
+  def show_orderSummary
+    @order=Order.new
+  end
+
+  def validate_orderSummary
+    params.permit!
+    @order = Order.where params[:order]
+    if not @order.blank?
+      flash[:notice] = "Order Exists"
+      redirect_to :action => "view_orderSummary"
+    else
+      flash[:notice] = "Order Does not exists"
+      render "show_orderSummary"
+    end
+  end
+
+  def view_orderSummary
+    @order = Order.find_by_order_no_and_chemical(params[:order][:order_no],params[:order][:chemical])
+  end
+
+  def updateShow_orderSummary
+    @order = Order.new
+  end
+
+  def update_orderSummary
+    @order=Order.find_by_order_no_and_chemical(params[:order][:order_no],params[:order][:chemical])
+  end
+  
+  def edit_orderSummary
+    @order = Order.find_by_order_no_and_chemical(params[:order][:order_no],params[:order][:chemical])
+    if @order.update_attributes(order_params)
+      flash[:notice] = "Order Updated"
+       redirect_to :action=>"add_orderSummary"
+      else
+      render "edit_orderSummary"
+    end
+  end
+
+  def destroyShow_orderSummary
+    @order = Order.new
+  end
+  
+  def destroy_orderSummary
+   @order = Order.find_by_order_no_and_chemical(params[:order][:order_no],params[:order][:chemical])
+   @order.delete
+   flash[:success] = "successfully deleted"
+   redirect_to :action=>"add_orderSummary"
+  end
+
+  def purchase
+   @purchase = Purchase.new
+  end
+
+  def get_purchase
+    @purchase=Purchase.new(purchase_params)
+    if @purchase.save
+       redirect_to :action=> "purchase"
+    end
+  end
+ 
+  def show_purchase
+    @purchase = Purchase.new
+  end  
+  
+  def view_purchase
+    @purchase = Purchase.find_by_grn_no(params[:purchase][:grn_no])
+  end
+
+  def updateShow_purchase
+    @purchase = Purchase.new
+  end
+ 
+  def update_purchase
+    @purchase = Purchase.find_by_grn_no(params[:purchase][:grn_no])
+  end
+  
+  def edit_purchase
+    @purchase = Purchase.find_by_grn_no(params[:purchase][:grn_no])
+    if @purchase.update_attributes(purchase_params)
+      redirect_to :action=>"purchase"
+    else
+      render "edit_purchase"
+    end
+  end
+
+  def destroyShow_purchase
+    @purchase = Purchase.new
+  end
+
+  def destroy_purchase
+   @purchase = Purchase.find_by_grn_no(params[:purchase][:grn_no])
+   @purchase.delete
+   redirect_to :action=>"purchase"
+  end
+
+  def show_issues
+    @issue=Issue.new
+  end
+
+  def view_issues
+    @issue=Issue.find(params[:order_no])
+  end
+
+  def show_labour
+    @labour=Labour.new
+  end
+
+  def view_labour
+    @labour=Labour.find(params[:id])
+  end
+
+  def report
+    @purchase = Purchase.new
+  end
+
+  def get_report
+    @purchase = Purchase.new(purchase_params)
+    if @purchase.save
+       redirect_to :action=> "report"
+    end
+  end
+
+  def add_issues
+    @issue=Issue.new
+  end
+
+  def get_issues
+    @issue=Issue.new(issues_params)
+    if @issue.save
+     flash[:success] = "successfully saved"  
+      redirect_to :action=> "add_issues"
+    end
+  end
+
+  def add_labour
+    @labour=Labour.new
+  end
+
+  def get_labour
+    @labour=Labour.new(labour_params)
+    if @labour.save
+      redirect_to :action=> "add_labour"
+    end
+  end
+ 
+  private
+  def user_params
+   params.require(:user).permit!
+  end
+
+  def purchase_params
+   params.require(:purchase).permit!
+  end
+  
+  def issues_params
+   params.require(:issue).permit!
+  end
+  
+  def labour_params
+   params.require(:labour).permit!
+  end
+  
+  def order_params
+   params.require(:order).permit!
+  end
+end

@@ -1,0 +1,45 @@
+<div class="demo-content1">
+<table>
+<tr><td>
+<h4>Purchase Summary - View</h4></td>
+<td>
+<div class="btn-group">
+<% if not factory? %>
+<%= link_to "Add", users_add_purchase_path,:class=>"btn btn-success" %>
+<%end%>
+<%= link_to "LIST", users_index_purchase_path,:class=>"btn btn-info" %>
+</div>
+</td>
+</tr>
+</table>
+
+<br><br>
+<table border="1" align="center" style="border:1px solid white;box-shadow:1px 3px 7px #000000;">
+<tr><td>GRN No:</td>
+<td><%= @purchase.grn_no %></td></tr>
+<tr><td>Item:</td>
+<td><%= @purchase.item %></td></tr>
+<tr><td>Bill Value:</td>
+<td><%= @purchase.bill_value %></td></tr>
+<tr><td>Description:</td>
+<td><%= @purchase.desc %></td></tr>
+<tr><td>Rate:</td>
+<td><%= @purchase.rate %></td></tr>
+<tr><td>Date:</td>
+<td><%= @purchase.date %></td></tr>
+<tr><td>Qty Received </td>
+<td><%= @purchase.qty_received %></td></tr>
+<tr><td>Debit:</td>
+<td><%= @purchase.debit %></td></tr>
+<tr><td>Party:</td>
+<td><%= @purchase.party%></td></tr>
+<tr><td>Qty Accepted:</td>
+<td><%= @purchase.qty_accepted %></td></tr>
+<tr><td>Reasons:</td>
+<td><%= @purchase.reasons %></td></tr>
+<tr><td>Trading Material:</td>
+<td><%= @purchase.trading_material %></td></tr>
+<tr><td>Rejected:</td>
+<td><%= @purchase.rejected %></td></tr>
+</table>
+</div>

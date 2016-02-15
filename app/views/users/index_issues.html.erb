@@ -1,0 +1,65 @@
+<div class="demo-content1">
+<table>
+<tr><td>
+<h4>Issues</h4></td>
+<td align="right">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="btn-group">
+<% if not factory? %>
+<div class="butt">
+<%= link_to "Add", users_add_issues_path,:class=>"btn btn-success" %>
+</div>
+<%end%>
+</div>
+</td>
+</tr>
+</table>
+<br><br>
+<div class="fott">
+<div class="digg_pagination" align="right">
+    <%= will_paginate @issue, :container => false %>
+  </div>
+</div>
+<!--%= will_paginate @issue, renderer: BootstrapPagination::Rails %-->
+<br><br>
+<table align="center">
+<tr>
+<h4 align="center">List Of Issues</h4></tr>
+<tr><td>
+<table border = "1" style="box-shadow:3px 3px 5px #000000;">
+<tr><th>Order No</th>
+<th>Issue Date</th>
+<th>Issue Slip No</th>
+<th>Shift</th></tr>
+<ul id = "Issues" >
+<% @issue.each do |i| %>
+<tr>
+<td><div class="fot"><%= i.order_no%></div></td>
+<td><div class="fot"><%= i.issue_date%></div></td>
+<td><div class="fot"><%= i.issue_slip_no%></div></td>
+<td><div class="fot"><%= i.shift%></div></td>
+<td><%= link_to "Show", {:action => 'show_issues', :id => i.id },:class=>"btn btn-warning" %></td>
+<%if admin?%>
+<td><%= link_to "Edit", {:action => 'edit_issues', :id => i.id },:class=>"btn btn-primary" %></td>
+<td><%= link_to "Delete", {:action => 'delete_issues', :id => i.id },:class=>"btn btn-danger",:onclick=>"if (confirm('Are you sure!!!')) commentDelete(1); return false"%></td>
+<%end%>
+<% if operator?%>
+<%unless i.updated_at <(Time.now- 1.day)%>
+<td><%= link_to "Edit", {:action => 'edit_issues', :id => i.id },:class=>"btn btn-primary" %></td>
+<td><%= link_to "Delete", {:action => 'delete_issues', :id => i.id },:class=>"btn btn-danger",:onclick => 'alert("Are you Sure!")'%></td>
+<%end%>
+<%end%>
+</tr>
+<%end%>
+</ul>
+</table>
+</td>
+</tr>
+</table>
+<br><br>
+<div class="fott">
+<div class="digg_pagination">
+    <%= will_paginate @issue, :container => false %>
+  </div>
+</div>
+<!--%= will_paginate @issue, renderer: BootstrapPagination::Rails %-->
+</div>

@@ -1,0 +1,168 @@
+@import 'bootstrap';
+.container {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.modal {
+   top: 30%;
+   position: fixed;
+   left: 50%;
+   height: 300px;
+}
+
+.btn-success {
+   color: #1D0513;
+}
+
+.set {
+    width: 78%;
+    left: 20%;
+    position: absolute;
+    height: 100%;
+}
+
+.fot {
+   font-size: 14px;
+}
+
+
+  
+.gap {
+    top: 44%;
+    position: absolute;
+    left: 33%;
+}
+.row {
+ width: 1007px;
+  margin-left: 0px;
+}
+
+#head {
+  background:#33d6ff;
+  height: 15%;
+}
+
+.cent {
+    position: absolute;
+    top: 21%;
+    left: 27%;
+}
+
+.spc {
+  left: 160%;
+}
+
+
+.color {
+  background: #49AFCD;
+}
+
+.color1 {
+ background: #1a1a1a;
+}
+
+#nav {
+  background: #1a1a1a;
+  height:1000px;
+  width: 80px;
+  float:left;
+}
+
+.demo-content{
+        height: 150%;
+        background: #1a1a1a;
+        float: left;
+        width: 185px;
+    }
+.wh {
+  background: #E6E6E6;
+ }
+
+.demo-content1{
+        font-size: 18px;
+        float: right;
+        background: #FFFFFF;
+        min-height: 700px;
+        width: 724px;
+        position: absolute;
+        left: 27%;
+}
+
+.pad {
+     padding-left: 28px;
+     padding-right: 26px;
+     }
+.form-control {
+     width: 100px;
+}
+
+.butt { 
+    padding-left: 55%;
+}
+
+.btn-group {
+ left: 377;
+}
+
+.form-control {
+  width: 75%; 
+  height: 30px;
+}
+
+#footer {
+   position:absolute;
+   bottom:0px;
+   height:35px;
+   width:100%;
+   color: #33d6ff;
+   background:#1a1a1a;
+   top: 160%;
+}
+
+.conborder { 
+  border: 1px solid yellowgreen;
+  border-radius: 2px; 
+  }
+.dropbtn {
+    background:#3377ff;
+    color: #00ff00;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 70px;
+    }
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+    width: 80px;
+}
+
+.fott {
+   font-size: 12px;
+}
+    

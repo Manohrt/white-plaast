@@ -1,0 +1,173 @@
+<script>
+    function sub() {
+      var txtFirstNumberValue = document.getElementById('txt1').value;
+      var txtSecondNumberValue = document.getElementById('txt2').value;
+      var txtThreeNumberValue = document.getElementById('txt3').value;
+      var txtFiveNumberValue = document.getElementById('txt5').value; 
+       var txtFourNumberValue = document.getElementById('txt4').value;
+        var txtEiNumberValue = document.getElementById('txt8').value;
+      var txtNiNumberValue = document.getElementById('txt9').value;
+       var txtSixNumberValue = document.getElementById('txt6').value;
+        var txtSeNumberValue = document.getElementById('txt7').value;
+  
+         var result = parseFloat(txtFirstNumberValue) - parseFloat(txtSecondNumberValue);
+         var result1 = parseFloat(txtThreeNumberValue) - parseFloat(txtFiveNumberValue);
+         var result2 = parseFloat(txtFirstNumberValue) - parseFloat(txtFourNumberValue);
+         var result3 = parseFloat(txtEiNumberValue) - parseFloat(txtNiNumberValue);
+         var result4 = parseFloat(txtThreeNumberValue) - parseFloat(txtSixNumberValue);
+
+           if (!isNaN(result))  {
+         document.getElementById('txt4').value = result;
+     }
+          if (!isNaN(result1))  {
+         document.getElementById('txt6').value = result1;
+     }
+           if (!isNaN(result2))  {
+         document.getElementById('txt7').value = result2;
+     }
+           if (!isNaN(result3))  {
+         document.getElementById('txt10').value = result3;
+     }
+           if (!isNaN(result4))  {
+         document.getElementById('txt11').value = result4;
+     }
+    
+}
+
+</script>
+
+<div class="demo-content1">
+<table>
+<tr><td>
+<h4>Issues</h4></td>
+<td align="right">
+&nbsp;&nbsp;&nbsp;&nbsp;<div class="btn-group">
+<div class="butt">
+<%= link_to "LIST", users_index_issues_path,:class=>"btn btn-info" %>
+</div>
+</div>
+</td>
+</tr>
+</table>
+
+<br><br>
+<table>
+<%= form_for([@issue], :url=>{:controller=>"users", :action => "get_issues"}) do |i|%>
+<tr>
+<td>
+<table style="border:1px solid white;box-shadow:3px 3px 5px #000000;"> 
+<tr><td><%= i.label :order_no,"Order No" %></td></tr>
+<tr><td><%= i.number_field :order_no,:required => true,:autofocus=>true %></td></tr>
+<tr><td><%= i.label :order_date,"Order Date" %></td></tr>
+<tr><td><%= i.text_field :order_date,:id=>"txtDate",:required => true %></td></tr>
+</table>
+
+<br>
+<table style="border:1px solid white;box-shadow:3px 3px 5px #000000;">
+<tr><td><%= i.label :party,"Party" %></td></tr>
+<tr><td><%= i.collection_select(:party, PartyOrder.select(:party_order_list).uniq, :party_order_list,:party_order_list,:prompt=> "select") %></td></tr>
+<tr><td><%= i.label :issue_slip_no,"Issue Slip No" %></td></tr>
+<tr><td><%= i.number_field :issue_slip_no,:required => true %></td></tr>
+<tr><td><%= i.label :issue_date,"Issue Date" %></td></tr>
+<tr><td><%= i.text_field :issue_date,:id=>"txtDate1",:required => true %></td></tr>
+<tr><td><%= i.label :machine_no,"Machine No" %></td></tr>
+<tr><td><%= i.collection_select(:machine_no, MachineUsed.select(:machine_used_list).uniq, :machine_used_list,:machine_used_list,:prompt=> "select") %></td></tr>
+<!--%= i.collection_select(:machine_no, Issue.select(:machine_no).uniq, :macine_no, :machine_no, :prompt=> 'select',:required => true)%-->
+<tr><td><%= i.label :shift,"Shift" %></td></tr>
+<tr><td><%= i.select :shift, options_for_select([["A"],["B"],["C"]]),:prompt=> '--select shift--',:required => true%>
+<!--%= i.collection_select(:shift, Issue.select(:shift).uniq, :shift, :shift, :prompt=> 'select',:required => true)%-->
+</td></tr>
+</table>
+
+<br>
+<table style="border:1px solid white;box-shadow:3px 3px 5px #000000;">
+<tr><td><%= i.label :rm_issues,"Raw Material Issues"%></td></tr>
+<tr><td><%= i.text_field :rm_issues,:required => true %></td></tr>
+<tr><td><%= i.label :rm_qty,"Raw Material Qty" %></td></tr>
+<tr><td><%= i.number_field :rm_qty,:step => "any",:id=>"txt1",:onkeyup=>"sub()",:required => true %></td></tr>
+<tr><td><%= i.label :rm_consume,"Raw Material Consume" %></td></tr>
+<tr><td><%= i.number_field :rm_consume,:step => "any",:id=>"txt2",:onkeyup=>"sub()",:required => true %></td></tr>
+<tr><td><%= i.label :rm_qty_return,"Raw Material Qty Return" %></td></tr>
+<tr><td><%= i.number_field :rm_qty_return,:step => "any",:id=>"txt4",:onkeyup=>"sub()",:readonly=> "true"%></td></tr>
+<tr><td><%= i.label :rm_rate,"Raw Material Rate per Kg/Nos" %></td></tr>
+<tr><td><%= i.number_field :rm_rate,:step => "any",:id=>"txt13",:required => true %></td></tr>
+</table>
+</td>
+<td>
+<div class="pad">
+<table style="border:1px solid white;box-shadow:3px 3px 5px #000000;">
+<tr><td><%= i.label :type,"Type Of Chemical" %></td></tr>
+<tr><td><%= i.collection_select(:chemicals_type, ChemicalType.select(:chemical_type_list).uniq, :chemical_type_list, :chemical_type_list, :prompt=> '--select--',:required => true)%></td></tr>
+<tr><td><%= i.label :color_issues,"Colour Issues(Chemical)" %></td></tr>
+<tr><td><%= i.collection_select(:color_issues, Chemical.select(:chemical_list).uniq, :chemical_list, :chemical_list,:prompt=>"--select--")%>
+</td></tr>
+<tr><td><%= i.label :chem_qty,"Chemical Qty" %></td></tr>
+<tr><td><%= i.number_field :chem_qty,:step => "any",:id=>"txt8",:onkeyup=>"sub()",:required => true %></td></tr>
+<tr><td><%= i.label :chem_qty_return,"Chemical Qty Return" %></td></tr>
+<tr><td><%= i.number_field :chem_qty_return,:step => "any",:id=>"txt9",:onkeyup=>"sub()",:required => true %></td></tr>
+<tr><td><%= i.label :chem_rate,"Chemical Rate per Kg/Nos" %></td></tr>
+<tr><td><%= i.number_field :chem_rate,:step => "any",:required => true %></td></tr>
+</table>
+
+<br>
+<table style="border:1px solid white;box-shadow:3px 3px 5px #000000;">
+<tr><td><%= i.label :rg_material_issues,"Re-Ground Material issues(RG)" %></td></tr>
+<tr><td><%= i.text_field :rg_material_issues,:required => true %></td></tr>
+<tr><td><%= i.label :rg_qty_issued,"Re-Ground Qty Issued" %></td></tr>
+<tr><td><%= i.number_field :rg_qty_issued,:step => "any",:id=>"txt3",:onkeyup=>"sub()",:required => true %></td></tr>
+<tr><td><%= i.label :rg_qty_return,"Re-Ground Qty Return" %></td></tr>
+<tr><td><%= i.number_field :rg_qty_return,:step => "any",:id=>"txt6",:onkeyup=>"sub()",:readonly=> "true" %></td></tr>
+<tr><td><%= i.label :rg_consume,"Re-Ground Qty Consume" %></td></tr>
+<tr><td><%= i.number_field :rg_consume,:step => "any",:id=>"txt5",:onkeyup=>"sub()",:required => true %></td></tr>
+<tr><td><%= i.label :rg_rate,"Re-Ground Rate per Kg/Nos" %></td></tr>
+<tr><td><%= i.number_field :rg_rate,:step => "any",:required => true %></td></tr>
+</table>
+</div>
+</td>
+
+<td>
+<table style="border:1px solid white;box-shadow:3px 3px 5px #000000;">
+<tr><td><%= i.label :rm_qty,"RM Qty" %></td></tr>
+<tr><td><%= i.number_field :rm_qty,:step => "any",:id=>"txt7",:onkeyup=>"sub()",:readonly=> "true" %></td></tr>
+<tr><td><%= i.label :che_qty,"Che Qty" %></td></tr>
+<tr><td><%= i.number_field :che_qty,:step => "any",:id=>"txt10",:onkeyup=>"sub()",:readonly=> "true" %></td></tr>
+<tr><td><%= i.label :rg_qty,"RG Qty" %></td></tr>
+<tr><td><%= i.number_field :rg_qty,:step => "any",:id=>"txt11",:onkeyup=>"sub()",:readonly=> "true" %></td></tr>
+</table>
+
+<br>
+<table style="border:1px solid white;box-shadow:3px 3px 5px #000000;">
+<tr><td><%= i.label :generated,"Generated" %></td></tr>
+<tr><td><%= i.number_field :generated,:required => true %></td></tr>
+<tr><td><%= i.label :lumps,"Lumps" %></td></tr>
+<tr><td><%= i.number_field :lumps,:step => "any",:required => true %></td></tr>
+<tr><td><%= i.label :qty_after_rg,"Qty After RG" %></td></tr>
+<tr><td><%= i.number_field :qty_after_rg,:required => true %></td></tr>
+</table>
+
+
+<br>
+<table style="border:1px solid white;box-shadow:3px 3px 5px #000000;">
+<tr><td><%= i.label :rm_cost,"RM Cost" %></td></tr>
+<tr><td><%= i.number_field :rm_cost,:step => "any",:required => true%></td></tr>
+<tr><td><%= i.label :che_cost,"Che Cost" %></td></tr>
+<tr><td><%= i.number_field :che_cost,:step => "any",:required => true %></td></tr>
+<tr><td><%= i.label :rg_cost,"RG Cost" %></td></tr>
+<tr><td><%= i.number_field :rg_cost,:step => "any",:required => true %></td></tr>
+</table>
+
+<br>
+<table style="border:1px solid white;box-shadow:3px 3px 5px #000000;">
+<tr><td><%= i.label :consolidated_qty,"Consolidated Qty" %></td></tr>
+<tr><td><%= i.number_field :consolidated_qty,:step => "any",:required => true %></td></tr>
+<tr><td><%= i.label :consolidated_cost,"Consolidated Cost" %></td></tr>
+<tr><td><%= i.number_field :consolidated_cost,:step => "any",:required => true %></td></tr>
+</table>
+<td>
+</tr>
+<tr>
+<td></td><td align="center">
+<%= i.submit "SUBMIT",:class=>"btn btn-info"%></td></tr>
+<% end %>
+</table>
+</div>

@@ -1,0 +1,72 @@
+
+<html>
+<head>
+  <title>White Plaast</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+        type="text/javascript"></script>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+        rel="Stylesheet" type="text/css" />
+</head>
+
+<script type="text/javascript">
+        $(function () {
+            $('#txtDate').datepicker({
+                dateFormat: "dd.mm.yy",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+<script type="text/javascript">
+        $(function () {
+            $('#txtDate1').datepicker({
+                dateFormat: "dd.mm.yy",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+<script>
+    function sum() {
+      var txtFirstNumberValue = document.getElementById('txt1').value;
+      var txtSecondNumberValue = document.getElementById('txt2').value;
+      var txtThreeNumberValue = document.getElementById('txt3').value;
+      var result = parseFloat(txtFirstNumberValue) * parseFloat(txtSecondNumberValue);
+     var result1 =  parseFloat(txtFirstNumberValue) * parseFloat(txtSecondNumberValue) * parseFloat(txtThreeNumberValue);
+          if (!isNaN(result))  {
+         document.getElementById('txt4').value = result;
+     }
+             if (!isNaN(result1))  {
+      document.getElementById('txt5').value = result1;
+}
+}
+</script>
+
+
+<body>
+<%= render "layouts/header"%>
+<div data-pjax-container>
+<!--% if not session[:user_id].blank?%-->
+  <!--%= link_to "Logout",users_logout_path%-->
+<!--% end%-->
+<% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: "alert alert-success" %>
+  <% end %>
+
+
+  <%= yield %>
+</div>
+
+
+
+
+</body>
+
+</html>

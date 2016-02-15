@@ -1,0 +1,105 @@
+
+<div class="demo-content1">
+<table>
+<tr><td>
+<h4>Labour</h4></td>
+<td align="right">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="btn-group">
+<div class="butt">
+<%= link_to "LIST", users_index_labour_path,:class=>"btn btn-info" %>
+</div>
+</div>
+</td>
+</tr>
+</table>
+
+<br><br>
+<table style="border:1px solid white;box-shadow:1px 3px 7px #000000;">
+<%= form_for([@labour], :url=>{:controller=>"users", :action => "get_labour"}) do |i|%>
+<tr>
+<td>
+<table>
+<tr><td ><%= i.label :order_no,"Order No"%></td></tr>
+<tr><td><%= i.number_field :order_no,:required => true,:autofocus=>true%></td></tr>
+<tr><td ><%= i.label :dated,"Dated"%></td></tr>
+<tr><td ><%= i.text_field :dated,:id=>"txtDate",:placeholder=>"--Select Date--"%></td></tr>
+<tr><td ><%= i.label :party,"Party"%></td></tr>
+<tr><td ><%= i.collection_select(:party, PartyOrder.select(:party_order_list).uniq, :party_order_list,:party_order_list,:prompt=> "select") %></td></tr>
+<tr><td ><%= i.label :issue_slip_no,"Issue Slip No"%></td></tr>
+<tr><td ><%= i.number_field :issue_slip_no,:placeholder=>"--Select Issue Slip No--",:required => true%></td></tr>
+<tr><td ><%= i.label :date,"Date"%></td></tr>
+<tr><td ><%= i.text_field :date,:id=>"txtDate1",:placeholder=>"--Select Date--"%></td></tr>
+<tr><td ><%= i.label :mach_used,"MachineUsed"%></td></tr>
+<tr><td ><%= i.collection_select(:mach_used, MachineUsed.select(:machine_used_list).uniq, :machine_used_list, :machine_used_list,:prompt=> "select") %></td></tr>
+<tr><td ><%= i.label :mould,"Mould Number"%></td></tr>
+<tr><td ><%= i.collection_select(:mould, MouldNo.select(:mould_no_list).uniq, :mould_no_list, :mould_no_list,:prompt=> "select") %></td></tr>
+<tr><td ><%= i.label :shift,"Shift"%></td></tr>
+<tr><td ><%= i.select :shift, options_for_select([["A"],["B"],["C"]]),:prompt=> '--select shift--',:required => true%></td></tr>
+<tr><td ><%= i.label :no_of_persons,"No of Persons"%></td></tr>
+<tr><td ><%= i.number_field :no_of_persons,:step => "any",:required => true%></td></tr>
+<tr><td ><%= i.label :other_work,"OtherWork"%></td></tr>
+<tr><td ><%= i.text_field :other_work,:required => true%></td></tr>
+</table>
+</td>
+
+<td>
+<div class="pad">
+<table>
+<tr><td ><%= i.label :nature,"Nature of Work"%></td></tr>
+<tr><td><%= i.collection_select(:nature, NatureOfWork.select(:nature_of_work_list).uniq, :nature_of_work_list, :nature_of_work_list, :prompt=> "--select--") %></td></tr>
+<tr><td ><%= i.label :rate_per_person,"Rate Per Person"%></td></tr>
+<tr><td ><%= i.number_field :rate_per_person,:required => true,:step => "any"%></td></tr>
+<tr><td ><%= i.label :cost_per_shift,"Cost per Shift"%></td></tr>
+<tr><td ><%= i.number_field :cost_per_shift,:required => true,:step => "any"%></td></tr>
+<tr><td ><%= i.label :no_of_item_produced,"No of Item Produced"%></td></tr>
+<tr><td ><%= i.number_field :no_of_item_produced,:required => true%></td></tr>
+<tr><td ><%= i.label :goods_finished,"Finished Goods Name"%></td></tr>
+<tr><td><%= i.collection_select(:goods_finished, FinishedGoodsName.select(:finished_goods_name_list).uniq,
+:finished_goods_name_list,:finished_goods_name_list,:prompt=>"select") %></td></tr>
+<tr><td ><%= i.label :weight_in_gms,"Weight In Gms CAVITY"%></td></tr>
+<tr><td ><%= i.number_field :weight_in_gms,:required => true,:step => "any"%></td></tr>
+<tr><td ><%= i.label :no_of_cavity,"No of Cavity"%></td></tr>
+<tr><td ><%= i.number_field :no_of_cavity,:required => true%></td></tr>
+<tr><td ><%= i.label :cycle_time,"Cycle Time"%></td></tr>
+<tr><td ><%= i.number_field :cycle_time,:required => true%></td></tr>
+<tr><td ><%= i.label :working_hrs,"Working Hours"%></td></tr>
+<tr><td ><%= i.number_field :working_hrs,:required => true,:step => "any"%></td></tr>
+<tr><td ><%= i.label :expected_production,"Expected Production"%></td></tr>
+<tr><td ><%= i.number_field :expected_production,:required => true%></td></tr>
+</table>
+</div>
+</td>
+
+<td>
+<table>
+<tr><td ><%= i.label :difference,"Difference"%></td></tr>
+<tr><td><%= i.number_field :difference,:required => true %></td></tr>
+<tr><td ><%= i.label :efficiency,"Efficiency in %"%></td></tr>
+<tr><td ><%= i.number_field :efficiency,:required => true,:step=>"any"%></td></tr>
+<tr><td ><%= i.label :no_of_hrs_idle,"No of Hrs IDLE Time"%></td></tr>
+<tr><td ><%= i.number_field :no_of_hrs_idle,:required => true,:step=>"any"%></td></tr>
+<tr><td ><%= i.label :no_of_mins_idle,"No of Minutes IDLE Time"%></td></tr>
+<tr><td ><%= i.number_field :no_of_mins_idle,:required => true,:step=>"any"%></td></tr>
+<tr><td ><%= i.label :reasons_for_idle,"Reasons for IDLE Time"%></td></tr>
+<tr><td ><%= i.collection_select(:reasons_for_idle, ReasonForIdleTime.select(:reason_for_idle_time_list).uniq, :reason_for_idle_time_list, :reason_for_idle_time_list,:prompt=> "select") %></td></tr>
+<tr><td ><%= i.label :idle_time_reasons_desc,"IDLE TIME Reasons Description"%></td></tr>
+<tr><td ><%= i.text_field :idle_time_reasons_desc,:required => true%></td></tr>
+<tr><td ><%= i.label :spares_name,"Spares (Name)"%></td></tr>
+<tr><td ><%= i.text_field :spares_name,:required => true%></td></tr>
+<tr><td ><%= i.label :spares_cost,"Spares (Cost)"%></td></tr>
+<tr><td ><%= i.number_field :spares_cost,:required => true%></td></tr>
+<tr><td ><%= i.label :supervisor_name,"Supervisor Name"%></td></tr>
+<tr><td ><%= i.text_field :supervisor_name,:required => true%></td></tr>
+</table>
+</td>
+</tr>
+<tr>
+<td></td>
+<td align="center"><%= i.submit "Submit",:class=>"btn btn-info" %></td>
+</tr>
+<%end%>
+</table>
+</div>
+
+
+

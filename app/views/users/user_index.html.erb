@@ -1,0 +1,15 @@
+<h4 align="right"> <%= link_to "Add New",users_new_path(@user),:class=>"btn btn-success"%></h4>
+<div class="demo-content1">
+<table border="1" align="center"  style="border:1px solid white;box-shadow:1px 3px 7px  #000000;">
+<tr><td colspan="4" align="center"><h4>User Details</h4></td></tr>
+
+<% @user.each do|i| %>
+<tr>
+<td><%= i.name %></td>
+<td><%= i.password %></td>
+<td><%= i.role %></td>
+<td><%= link_to "Delete", {:action => 'user_destroy', :id => i.id },:class=>"btn btn-danger",:onclick=>"if (confirm('Are you sure...?')) commentDelete(1); return false"%></td>
+</tr>
+<%end%>
+</table>
+</div>

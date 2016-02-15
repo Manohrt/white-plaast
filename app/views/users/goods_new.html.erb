@@ -1,0 +1,10 @@
+<h4 align="right"><%= link_to "List",users_index_admin_path(@admin),:class=>"btn btn-warning"%></h4>
+<center><b>Add New Goods Name</b>
+<table style="border:1px solid white;box-shadow:1px 3px 7px  #000000;">
+<tr><td><%= form_for([@finished_goods_name], validate: true, :url=>{:controller=>"users", :action => "goods_create"}) do |i|%>
+<tr><td><%=i.text_field:finished_goods_name_list%></tr>
+<td align="center"><%= i.submit "Save",:class=>"btn btn-info"%>
+ <%end%>
+</td>
+</tr>
+</table>

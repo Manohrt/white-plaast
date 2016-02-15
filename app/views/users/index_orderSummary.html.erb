@@ -1,0 +1,79 @@
+
+<div class="demo-content1">
+<table>
+<tr><td>
+<h4>Order Summary</h4></td>
+<td>
+<% if not factory? %>
+<div class="btn-group">
+ <%= link_to "Add",users_add_orderSummary_path,:class=>"btn btn-success"%>
+</div>
+<%end%>
+</td>
+</tr>
+</table>
+<br><br>
+<div class="fott">
+<div class="digg_pagination" align="right"> 
+    <%= will_paginate @order_summary, :container => false %>
+  </div>
+</div>
+<!--%= will_paginate @order_summary, renderer: BootstrapPagination::Rails %-->
+<br><br><br>
+<table align="center">
+<tr>
+<td align="center"><h4>List Of Orders</h4></td></tr>
+<tr>
+<td>
+<div class="fot">
+<table border = "1" style="border:1px solid white;box-shadow:1px 3px 7px  #000000;">
+<tr><th>Order No</th>
+<th>Chemicals</th>
+<%if admin?%>
+<th>created_by</th>
+<th>updated_by</th>
+<th>created_at</th>
+<th>updated_at</th>
+<%end%>
+</tr>
+<ul id = "Order Summaries" >
+<% @order_summary.each do |i| %>
+<tr>
+<td><div class="fot"><%= i.order_no%></div></td>
+<td><div class="fot"><%= i.chemicals%></div></td>
+<%if factory?%>
+<td><%= link_to "Show", {:action => 'show_orderSummary', :id => i.id },:class=>"btn btn-warning" %></td>
+<%end%>
+<%if admin?%>
+<td><%= @user %></td>
+<td><%= @user %></td>
+<td><div class="fot"><%= i.created_at%></div></td>
+<td><div class="fot"><%= i.updated_at%></div></td>
+<td><%= link_to "Show", {:action => 'show_orderSummary', :id => i.id },:class=>"btn btn-warning" %></td>
+<td><%= link_to "Edit", {:action => 'edit_orderSummary', :id => i.id },:class=>"btn btn-primary" %></td>
+<td><%= link_to "Delete", {:action => 'delete_orderSummary', :id => i.id },:class=>"btn btn-danger",:onclick=>"if (confirm('Are you sure!!!')) commentDelete(1); return false"%></td>
+<%end%>
+
+<% if operator?%>
+<td><%= link_to "Show", {:action => 'show_orderSummary', :id => i.id },:class=>"btn btn-warning" %></td>
+<%unless i.updated_at <(Time.now- 1.day)%>
+<td><%= link_to "Edit", {:action => 'edit_orderSummary', :id => i.id },:class=>"btn btn-primary" %></td>
+<td><%= link_to "Delete", {:action => 'delete_orderSummary', :id => i.id },:class=>"btn btn-danger",:onclick=>"if (confirm('Are you sure...?')) commentDelete(1); return false"%></td>
+<%end%>
+<%end%>
+</tr>
+<%end%>
+</ul>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<br><br><br>
+<div class="fott">
+<div class="digg_pagination" >
+    <%= will_paginate @order_summary, :container => false %>
+  </div>
+</div>
+<!--%= will_paginate @order_summary, renderer: BootstrapPagination::Rails %-->
+</div>

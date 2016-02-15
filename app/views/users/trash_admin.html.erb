@@ -1,0 +1,19 @@
+<div class="demo-content1">
+<center>Trash - Details</center>
+<br><br><br><br>
+<table border="3" align="center" style="border:1px solid white;box-shadow:1px 3px 7px  #000000;">
+<tr><th>Order No</th>
+<th>Chemicals</th>
+</tr>
+<ul id = "order_summary" >
+<% @order_summary.each do |i| %>
+<tr>
+<td><%= i.order_no%></td>
+<td><%= i.chemicals%></td>
+<td><%= link_to "Delete permanently", {:action => 'delete_trash', :id => i.id }%></td>
+<td><%= link_to "Restore", {:action => 'restore_trash', :id => i.id } %></td>
+</tr>
+<%end%>
+</ul>
+</table>
+</div>

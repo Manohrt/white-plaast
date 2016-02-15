@@ -1,0 +1,11 @@
+<h4 align="right"><%= link_to "List",users_index_admin_path(@admin),:class=>"btn btn-warning"%></h4>
+<center><b>Add New Chemical Type</b>
+<table  style="box-shadow:3px 3px 5px #000000;">
+<tr><td> <%= form_for([@chemical_type], validate: true, :url=>{:controller=>"users", :action => "chemical_type_create"}) do |i|%>
+<tr><td><%=i.text_field:chemical_type_list%></tr>
+<td align="center"><%= i.submit "Save",:class="btn btn-info"%>
+ <%end%>
+</td>
+</tr>
+</table>
+
