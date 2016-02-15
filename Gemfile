@@ -7,8 +7,8 @@ gem 'execjs'
 gem 'therubyracer'
 gem "bootstrap-sass","~>2.3.1.0"
 gem 'pjax_rails'
-gem 'rails_admin'
-#gem "selectize-rails"
+#gem 'rails_admin'
+gem "selectize-rails"
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
 gem "paranoia", "~> 2.0"
