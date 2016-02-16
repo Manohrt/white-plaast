@@ -1,11 +1,12 @@
 <table align="right">
 <tr><td>
-<%= link_to "Add New",users_party_order_new_path(@party_order),:class=>"btn btn-success"%></td>
+<%= link_to "Add New",users_chemical_type_new_path,:class=>"btn btn-success"%></td>
 <td><%= link_to "List",users_index_admin_path(@admin),:class=>"btn btn-warning"%></td></tr>
 </table>
+<center>
 <br><br>
 <div class="demo-content1">
-<center><b>Chemical Lists</b></center>
+<center><b>Chemical Lists</b></center><br><br>
 <% @chemical_type.each do |i| %>
 <table border="1"  style="box-shadow:3px 3px 5px #000000;">
 <tr>
@@ -15,4 +16,4 @@
 </table>
 <%end%>
 </div>
-
+</center>

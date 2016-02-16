@@ -30,10 +30,8 @@
 <tr><th>Order No</th>
 <th>Chemicals</th>
 <%if admin?%>
-<th>created_by</th>
-<th>updated_by</th>
-<th>created_at</th>
-<th>updated_at</th>
+<th>Created at</th>
+<th>Updated at</th>
 <%end%>
 </tr>
 <ul id = "Order Summaries" >
@@ -45,10 +43,8 @@
 <td><%= link_to "Show", {:action => 'show_orderSummary', :id => i.id },:class=>"btn btn-warning" %></td>
 <%end%>
 <%if admin?%>
-<td><%= @user %></td>
-<td><%= @user %></td>
-<td><div class="fot"><%= i.created_at%></div></td>
-<td><div class="fot"><%= i.updated_at%></div></td>
+<td><div class="fot"><%= i.created_at.strftime("%Y-%m-%d")%></div></td>
+<td><div class="fot"><%= i.updated_at.strftime("%Y-%m-%d")%></div></td>
 <td><%= link_to "Show", {:action => 'show_orderSummary', :id => i.id },:class=>"btn btn-warning" %></td>
 <td><%= link_to "Edit", {:action => 'edit_orderSummary', :id => i.id },:class=>"btn btn-primary" %></td>
 <td><%= link_to "Delete", {:action => 'delete_orderSummary', :id => i.id },:class=>"btn btn-danger",:onclick=>"if (confirm('Are you sure!!!')) commentDelete(1); return false"%></td>

@@ -3,7 +3,7 @@
 <table>
 <tr><td> <%= form_for([@reason_for_idle_time], validate: true, :url=>{:controller=>"users", :action => "reasonforidle_create"}) do |i|%>
 <tr><td><%=i.text_field:reason_for_idle_time_list%></tr>
-<td align="center"><%= i.submit"Save",:class="btn btn-info"%>
+<td align="center"><%= i.submit"Save",:class=>"btn btn-info"%>
  <%end%>
 </td>
 </tr>

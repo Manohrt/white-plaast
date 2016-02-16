@@ -6,8 +6,7 @@ gem 'rails', '4.2.5'
 gem 'execjs'
 gem 'therubyracer'
 gem "bootstrap-sass","~>2.3.1.0"
-gem 'pjax_rails'
-#gem 'rails_admin'
+gem 'rack-pjax'
 gem "selectize-rails"
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'

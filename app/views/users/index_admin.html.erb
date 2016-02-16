@@ -6,7 +6,7 @@
 </table>
 <br><br><br><br>
 <table align="center" style="border:1px solid white;box-shadow:1px 3px 7px  #000000;">
-<%= form_for([@admin], validate: true, :url=>{:controller=>"users", :action => "admin_create", :remote => true}) do |i|%>
+<%= form_for([Admin.new], validate: true, :url=>{:controller=>"users", :action => "admin_create", :remote => true}) do |i|%>
 <tr>
 <td>
 <table>

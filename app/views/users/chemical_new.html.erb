@@ -2,7 +2,7 @@
 <center><b>Add New Chemical</b>
 <table style="border:1px solid white;box-shadow:1px 3px 7px  #000000;">
 <tr><td> <%= form_for([@chemical], validate: true, :url=>{:controller=>"users", :action => "chemical_create"}) do |i|%>
-<tr><td><%=i.text_field:chemical%></tr>
+<tr><td><%=i.text_field:chemical_list%></tr>
 <td align="center"><%= i.submit "Save",:class=>"btn btn-info"%>
  <%end%>
 </td>
