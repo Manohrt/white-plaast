@@ -590,29 +590,69 @@ skip_before_action :check_session, :only=>[:login,:validate_login]
     redirect_to :action=>"index_admin"
   end
 
-
   def trash_admin
-     @user=User.new
+    @user=User.new
     @user = User.find(session[:user_id]).name
     @order_summary = OrderSummary.only_deleted
-  
-    #@te=@order_summary.pluck(:id)
-  end  
-  
-  def delete_trash
-   @order_summary = OrderSummary.find params[:id]
-   @order_summary.delete
-  # params.permit!
-   #@te.delete
-   flash[:notice] = "Order Deleted Permanently!!!"
-   redirect_to :action=>"trash_admin"
+    @purchase = Purchase.only_deleted
+    @issue = Issue.only_deleted
+    @labour = Labour.only_deleted
   end
 
-  def restore_trash
-   @order_summary = OrderSummary.find params[:id]
-   @issue.restore
-   flash[:notice] = "Order Restored Successfully!!!"
-   redirect_to :action=>"trash_admin"
+  def delete_trashOrderSummary
+    @order_summary = OrderSummary.only_deleted.find params[:id]
+    @order_summary.really_destroy!
+    flash[:notice] = "Order Deleted Permanently!!!"
+    redirect_to :action=>"trash_admin"
+  end
+
+  def delete_trashPurchase
+    @purchase = Purchase.only_deleted.find params[:id]
+    @purchase.really_destroy!
+    flash[:notice] = "Purchase Deleted Permanently!!!"
+    redirect_to :action=>"trash_admin"
+  end
+
+  def delete_trashIssue
+    @issue = Issue.only_deleted.find params[:id]
+    @issue.really_destroy!
+    flash[:notice] = "Issue Deleted Permanently!!!"
+    redirect_to :action=>"trash_admin"
+  end
+
+  def delete_trashLabour
+    @labour = Labour.only_deleted.find params[:id]
+    @labour.really_destroy!
+    flash[:notice] = "Labour Deleted Permanently!!!"
+    redirect_to :action=>"trash_admin"
+  end
+
+  def restore_trashOrderSummary
+    @order_summary = OrderSummary.only_deleted.find params[:id]
+    @order_summary.restore
+    flash[:notice] = "Order Restored Successfully!!!"
+    redirect_to :action=>"trash_admin"
+  end
+
+  def restore_trashPurchase
+    @purchase = Purchase.only_deleted.find params[:id]
+    @purchase.restore
+    flash[:notice] = "Purchase Restored Successfully!!!"
+    redirect_to :action=>"trash_admin"
+  end
+
+  def restore_trashIssue
+    @issue = Issue.only_deleted.find params[:id]
+    @issue.restore
+    flash[:notice] = "Issue Restored Successfully!!!"
+    redirect_to :action=>"trash_admin"
+  end
+
+  def restore_trashLabour
+    @labour = Labour.only_deleted.find params[:id]
+    @labour.restore
+    flash[:notice] = "Labour Restored Successfully!!!"
+    redirect_to :action=>"trash_admin"
   end
 
   private
@@ -665,7 +705,7 @@ skip_before_action :check_session, :only=>[:login,:validate_login]
    end
 
    def goods_params
-      params.require(:fininished_goods_name).permit!
+      params.require(:finished_goods_name).permit!
    end
 
    def mould_params

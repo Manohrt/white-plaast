@@ -1,6 +1,7 @@
 <div class="demo-content1">
 <center>Trash - Details</center>
 <br><br><br><br>
+<h4 align= "center">Order Summary</h4>
 <table border="3" align="center" style="border:1px solid white;box-shadow:1px 3px 7px  #000000;">
 <tr><th>Order No</th>
 <th>Chemicals</th>
@@ -8,12 +9,79 @@
 <ul id = "order_summary" >
 <% @order_summary.each do |i| %>
 <tr>
-<td><%= i.order_no%></td>
+<td><%= i.party%></td>
 <td><%= i.chemicals%></td>
-<td><%= link_to "Delete permanently", {:action => 'delete_trash', :id => i.id }%></td>
-<td><%= link_to "Restore", {:action => 'restore_trash', :id => i.id } %></td>
+<td><%= link_to "Delete permanently", {:action => 'delete_trashOrderSummary', :id => i.id },:class=>"btn btn-danger",:onclick=>"if (confirm('Are you sure...?')) commentDelete(1); return false"%></td>
+<td><%= link_to "Restore", {:action => 'restore_trashOrderSummary', :id => i.id },:class=>"btn btn-success",:onclick=>"if (confirm('Are you sure...?')) commentDelete(1); return false" %></td>
 </tr>
 <%end%>
 </ul>
 </table>
+
+<br>
+
+<h4 align= "center">Issue</h4>
+<table border="3" align="center" style="border:1px solid white;box-shadow:1px 3px 7px  #000000;">
+<tr><th>Order No</th>
+<th>Issue Slip No</th>
+<th>Issue Date</th>
+<th>Shift</th>
+</tr>
+<ul id = "issue" >
+<% @issue.each do |i| %>
+<tr>
+<td><%= i.order_no%></td>
+<td><%= i.issue_slip_no%></td>
+<td><%= i.issue_date%></td>
+<td><%= i.shift%></td>
+<td><%= link_to "Delete permanently", {:action => 'delete_trashIssue', :id => i.id },:class=>"btn btn-danger",:onclick=>"if (confirm('Are you sure...?')) commentDelete(1); return false"%></td>
+<td><%= link_to "Restore", {:action => 'restore_trashIssue', :id => i.id },:class=>"btn btn-success",:onclick=>"if (confirm('Are you sure...?')) commentDelete(1); return false" %></td>
+</tr>
+<%end%>
+</ul>
+</table>
+
+<br>
+
+<h4 align= "center">Labour</h4>
+<table border="3" align="center" style="border:1px solid white;box-shadow:1px 3px 7px  #000000;">
+<tr><th>Order No</th>
+<th>Issue Slip No</th>
+<th>Issue Date</th>
+<th>Shift</th>
+</tr>
+<ul id = "labour" >
+<% @labour.each do |i| %>
+<tr>
+<td><%= i.order_no%></td>
+<td><%= i.issue_slip_no%></td>
+<td><%= i.dated%></td>
+<td><%= i.shift%></td>
+<td><%= link_to "Delete permanently", {:action => 'delete_trashLabour', :id => i.id },:class=>"btn btn-danger",:onclick=>"if (confirm('Are you sure...?')) commentDelete(1); return false"%></td>
+<td><%= link_to "Restore", {:action => 'restore_trashLabour', :id => i.id },:class=>"btn btn-success",:onclick=>"if (confirm('Are you sure...?')) commentDelete(1); return false" %></td>
+</tr>
+<%end%>
+</ul>
+</table>
+
+<br>
+
+<h4 align= "center">Purchase</h4>
+<table border="3" align="center" style="border:1px solid white;box-shadow:1px 3px 7px  #000000;">
+<tr><th>Party</th>
+<th>GRN NO</th>
+</tr>
+<ul id = "purchase" >
+<% @purchase.each do |i| %>
+<tr>
+<td><%= i.party%></td>
+<td><%= i.grn_no%></td>
+<td><%= link_to "Delete permanently", {:action => 'delete_trashPurchase', :id => i.id },:class=>"btn btn-danger",:onclick=>"if (confirm('Are you sure...?')) commentDelete(1); return false"%></td>
+<td><%= link_to "Restore", {:action => 'restore_trashPurchase', :id => i.id },:class=>"btn btn-success",:onclick=>"if (confirm('Are you sure...?')) commentDelete(1); return false" %></td>
+</tr>
+<%end%>
+</ul>
+</table>
+
 </div>
+

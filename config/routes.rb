@@ -131,9 +131,6 @@ Rails.application.routes.draw do
   get 'users/reasonforidle_delete'
   post 'users/reasonforidle_delete'
 
-  get 'users/trash_admin'
-  get 'users/delete_trash'
-  get 'users/restore_trash'
   get 'users/new'
   post 'users/create'
   post 'users/new'
@@ -141,6 +138,17 @@ Rails.application.routes.draw do
   post 'users/user_index'
   get 'users/user_destroy'
   post 'users/user_destroy' 
+
+  get 'users/trash_admin'
+  get 'users/delete_trashOrderSummary'
+  get 'users/restore_trashOrderSummary'
+  get 'users/delete_trashIssue'
+  get 'users/restore_trashIssue'
+  get 'users/delete_trashLabour'
+  get 'users/restore_trashLabour'
+  get 'users/delete_trashPurchase'
+  get 'users/restore_trashPurchase'
+
  
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
